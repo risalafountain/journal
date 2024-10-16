@@ -2,16 +2,23 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const entrySchema = new Schema({
-    username: {
+    title: {
         type: String, 
-        required: true,
-        lowercase: true,
-        unique: true
+        required: true
     },
-    password: {
+    content: {
         type: String,
-        required: true,
+        required: true
+    },
+    //create relationship one to many 
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User", 
+        required: true
+    },
+    username: {
+        type: String
     }
 })
 
-module.exports = mongoose.model("entry", entrySchema)
+module.exports = mongoose.model("Entry", entrySchema)
